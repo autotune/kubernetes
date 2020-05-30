@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+ name: contrasting-org-certificate 
+spec:
+ # name of the tls secret to store
+ # the generated certificate/key pair
+ secretName: contrasting.org.tls 
+ issuerRef:
+ # ClusterIssuer Name
+  name: contrasting-org-ca-issuer
+ # Issuer can be referenced
+ # by changing the kind here.
+ # the default value is Issuer (i.e.
+ # a locally namespaced Issuer)
+  kind: ClusterIssuer
+ commonName: "*.contrasting.org"
+ dnsNames:
+ # one or more fully-qualified domain names
+ # can be defined here
+ - jenkins.contrasting.org
